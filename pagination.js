@@ -25,9 +25,14 @@ function renderPosts(posts) {
   });
   div.appendChild(ul);
 }
-document.getElementById("btn-1").addEventListener("click", () => {
+document.getElementById("btn-1").addEventListener("click", function () {
+  this.disabled = "true"
+ setTimeout(() => {
+  console.log("Rate limit exceeded. Please wait.");
   Page++;
   fetchPosts(Page);
+  this.disabled = false;
+}, 2000);
 });
 document.getElementById("btn-2").addEventListener("click", () => {
   if (Page > 1) {
